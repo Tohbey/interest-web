@@ -1,0 +1,12 @@
+<div class="main">
+  <div class="container">
+    <p class="container-header">Verification Code</p>
+    <p class="container-body">Enter your otp code that has been sent to your phone number</p>
+    <div>
+      <p *ngIf="isError" class="container-body">{{errorMsg?.error?.msg}}</p>
+      <p class="container-body">OTP code</p>
+      <ng-otp-input (onInputChange)="onOtpChange($event)" *ngIf="showOtpComponent" [config]="config"></ng-otp-input>
+    </div>
+    <button (click)="onVerify()" class="container-button">Submit</button>
+  </div>
+</div>

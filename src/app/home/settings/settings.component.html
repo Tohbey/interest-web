@@ -1,0 +1,100 @@
+<div class="main">
+  <div class="container">
+    <button class="container-button" (click)="toggle(1)">Change Password</button>
+    <button class="container-button" (click)="toggle(2)">Change Username</button>
+    <button class="container-button" (click)="toggle(3)">Change Email</button>
+  </div>
+  <div [ngSwitch]="displayDivNumber">
+    <div *ngSwitchCase="1">
+      <p class="container-body">Change Password</p>
+      <form class="form" autocomplete="off" [formGroup]="password" (ngSubmit)="onSavePassword()">
+        <div class="form__group">
+          <input
+            class="form__input form-control"
+            placeholder="Old Password"
+            id="oldPassword"
+            name="oldPassword"
+            formControlName="oldPassword"
+            required
+            type="password"
+            [ngClass]="{ 'is-invalid': isPassword && f.oldPassword.errors }"
+          />
+          <label class="form__label">Old password</label>
+          <div *ngIf="isPassword && f.oldPassword.errors" class="invalid-feedback">
+            <div style="margin-top: -21px" *ngIf="f.oldPassword.errors?.required">
+              old password is required
+            </div>
+          </div>
+        </div>
+        <div class="form__group">
+          <input
+            class="form__input form-control"
+            placeholder="New Password"
+            id="newPassword"
+            name="newPassword"
+            formControlName="newPassword"
+            required
+            type="password"
+            [ngClass]="{ 'is-invalid': isPassword && f.newPassword.errors }"
+          />
+          <label class="form__label">New password</label>
+          <div *ngIf="isPassword && f.newPassword.errors" class="invalid-feedback">
+            <div style="margin-top: -21px" *ngIf="f.newPassword.errors?.required">
+              new password is required
+            </div>
+          </div>
+        </div>
+        <button class="save-button">Save Changes</button>
+      </form>
+    </div>
+    <div *ngSwitchCase="2">
+      <p class="container-body">Change Username</p>
+      <form class="form" autocomplete="off" [formGroup]="changeUsername" (ngSubmit)="onSaveUsername()">
+        <div class="form__group">
+          <input
+            class="form__input form-control"
+            placeholder="username"
+            id="username"
+            name="username"
+            formControlName="username"
+            required
+            type="text"
+            [ngClass]="{ 'is-invalid': isUsername && d.username.errors }"
+          />
+          <label class="form__label">username</label>
+          <div *ngIf="isUsername && d.username.errors" class="invalid-feedback">
+            <div style="margin-top: -21px" *ngIf="d.username.errors?.required">
+              username is required
+            </div>
+          </div>
+          <button class="save-button">Save Changes</button>
+        </div>
+      </form>
+    </div>
+    <div *ngSwitchCase="3">
+      <p class="container-body">Change Email</p>
+      <form class="form" autocomplete="off" [formGroup]="changeEmail" (ngSubmit)="onSaveEmail()">
+        <div class="form__group">
+          <input
+            class="form__input form-control"
+            placeholder="Email"
+            id="email"
+            name="email"
+            formControlName="email"
+            required
+            type="email"
+            [ngClass]="{ 'is-invalid': isEmail && e.email.errors }"
+          />
+          <label class="form__label">Email</label>
+          <div *ngIf="isEmail && e.email.errors" class="invalid-feedback">
+            <div style="margin-top: -21px" *ngIf="e.email.errors?.required">
+              email is required
+            </div>
+          </div>
+          <button class="save-button">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+  <button class="container-button" (click)="logout()">Logout</button>
+</div>

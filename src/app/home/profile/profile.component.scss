@@ -1,0 +1,99 @@
+@import '../../sass/text';
+@import '../../sass/main';
+@import '../../sass/vairable';
+
+.main {
+  display: grid;
+  width: 100%;
+  overflow: hidden;
+  grid-template-rows: [header-start] minmax(min-content, 1fr) [header-end];
+  grid-template-columns: repeat(12, minmax(min-content, 14rem));
+}
+
+.header {
+  display: flex;
+  grid-column: 1/13;
+  grid-row: header-start/header-end;
+  flex-direction: column;
+  position: relative;
+
+  &-banner {
+    height: 35rem;
+    width: 100%;
+    background-image: url('../../../assets/images/coverpage.jfif');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+  }
+
+  &-profile {
+    height: 14rem;
+    width: 100%;
+    border: 1px solid navy;
+    padding: 10px 27rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    @media only screen and (max-width: $tablet){
+      height: 16rem;
+      padding: 0rem 0rem;
+    }
+    &-box{
+      width: 89rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      margin: 0 auto;
+      @media only screen and (max-width: $tablet){
+        width: 44rem;
+        padding-left: 9rem;
+      }
+
+      @media only screen and (max-width: $mobile-large){
+        padding-left: 11rem;
+      }
+    }
+
+    &-container{
+      display: flex;
+      flex-direction: row;
+      width: 30rem;
+      justify-content: space-between;
+      @media only screen and (max-width: $tablet){
+        flex-direction: column;
+      }
+    }
+    @include text(5px, left, 15rem);
+    &-header{
+      font-size: 2.5rem;
+    }
+  }
+
+  &-profile-picture {
+    position: absolute;
+    bottom: 5.9rem;
+    left: 9.2rem;
+    background-image: url('../../../assets/images/profile.jpg');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 16rem;
+    width: 16rem;
+    border-radius: 50%;
+    z-index: 1000;
+    @media only screen and (max-width: $tablet-big){
+      left: 7.2rem;
+    }
+
+    @media only screen and (max-width: $tablet){
+      left: 5.2rem;
+      bottom: 9.9rem;
+    }
+  }
+}
+
+
+.interest{
+  padding: 3rem;
+}

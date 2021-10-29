@@ -1,0 +1,60 @@
+@import './vairable';
+@import './button';
+
+.form {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  &__group:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+
+  &__input {
+    font-size: 1.5rem;
+    margin: 5px 0;
+    font-family: inherit;
+    color: inherit;
+    padding: 1rem 1rem;
+    border-radius: 5px;
+    background-color: rbga($white-color, .5);
+    border: 1px solid;
+    width: 29rem;
+    display: block;
+    transition: all .3s;
+
+    &:focus {
+      outline: none;
+      box-shadow: 0 1rem 2rem rgba($black-color, .1);
+      border-bottom: 3px solid $primary-color;
+    }
+
+    &:focus:invalid {
+      border-bottom: 3px solid $secondary-color-1;
+    }
+
+    &::-webkit-input-placeholder {
+      color: $color-grey-dark-2;
+    }
+  }
+
+
+  &__label {
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-top: .7rem;
+    display: block;
+    transition: all .3s;
+  }
+
+  &__input:placeholder-shown+&__label {
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-4rem);
+  }
+
+  @include button(#F05537, $white-color, #d1410c);
+  &-button{
+    width: 90%;
+    border-radius: 5px;
+  }
+}

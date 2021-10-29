@@ -1,0 +1,145 @@
+<div class="main">
+  <div class="login">
+    <div class="login-left">
+      <p class="login-header">Welcome back!</p>
+      <p class="login-subheader">
+        to keep conntected with us please login with your personal info
+      </p>
+      <button routerLink="/login" class="form-button">sign in</button>
+    </div>
+    <div class="login-right">
+      <p class="login-header">Create Account</p>
+      <p *ngIf="isError" class="login-body">{{errorStatment}}</p>
+      <form
+        autocomplete="off"
+        [formGroup]="sign"
+        class="form"
+        (ngSubmit)="signUp()"
+      >
+        <div class="form__group">
+          <input
+            placeholder="Email"
+            class="form-control form__input"
+            type="email"
+            id="email"
+            name="email"
+            formControlName="email"
+            required
+            [ngClass]="{ 'is-invalid': submitSignUp && f.email.errors }"
+          />
+          <label class="form__label">Email</label>
+          <div *ngIf="submitSignUp && f.email.errors" class="invalid-feedback">
+            <div style="margin-top: -21px" *ngIf="f.email.errors?.required">
+              email is required
+            </div>
+          </div>
+        </div>
+        <div class="login-right-small">
+          <div class="form__group">
+            <select style="width: 10rem;"
+              formControlName="countryCode"
+              id="countryCode"
+              name="countryCode"
+              class="form__input form-select-sm"
+              required
+              [ngClass]="{ 'is-invalid': submitSignUp && f.email.errors }"
+            >
+              <option value="" disabled selected>CoC</option>
+              <option *ngFor="let k of countryCode" [ngValue]="k.dial_code">
+                {{ k.code }} {{ k.dial_code }}
+              </option>
+            </select>
+          </div>
+          <div class="form__group">
+            <input style="width: 21rem;"
+              class="form__input form-control"
+              placeholder="Phone Number"
+              id="phoneNumber"
+              name="phoneNumber"
+              formControlName="phoneNumber"
+              required
+              [ngClass]="{ 'is-invalid': submitSignUp && f.phoneNumber.errors }"
+            />
+            <label class="form__label">Phone Number</label>
+            <div
+              *ngIf="submitSignUp && f.phoneNumber.errors"
+              class="invalid-feedback"
+            >
+              <div
+                style="margin-top: -21px"
+                *ngIf="f.phoneNumber.errors?.required"
+              >
+                phone number is required
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="form__group">
+          <input
+            class="form__input form-control"
+            placeholder="name"
+            id="name"
+            required
+            name="name"
+            formControlName="name"
+            [ngClass]="{ 'is-invalid': submitSignUp && f.name.errors }"
+          />
+          <label class="form__label">name</label>
+          <div
+            *ngIf="submitSignUp && f.name.errors"
+            class="invalid-feedback"
+          >
+            <div style="margin-top: -21px" *ngIf="f.name.errors?.required">
+              name is required
+            </div>
+          </div>
+        </div>
+        <div class="form__group">
+          <input
+            class="form__input form-control"
+            placeholder="************"
+            type="password"
+            id="password"
+            required
+            name="password"
+            formControlName="password"
+            [ngClass]="{ 'is-invalid': submitSignUp && f.password.errors }"
+          />
+          <label class="form__label">Password</label>
+          <div
+            *ngIf="submitSignUp && f.password.errors"
+            class="invalid-feedback"
+          >
+            <div style="margin-top: -21px" *ngIf="f.password.errors?.required">
+              password is required
+            </div>
+          </div>
+        </div>
+        <div class="form__group">
+          <input
+            class="form__input form-control"
+            placeholder="Interest etc."
+            type="text"
+            id="interest"
+            required
+            name="interest"
+            formControlName="interest"
+            [ngClass]="{ 'is-invalid': submitSignUp && f.interest.errors }"
+          />
+          <label class="form__label">Interest</label>
+          <div
+            *ngIf="submitSignUp && f.interest.errors"
+            class="invalid-feedback"
+          >
+            <div style="margin-top: -21px" *ngIf="f.interest.errors?.required">
+              interest is required
+            </div>
+          </div>
+        </div>
+        <div style="display: flex; justify-content: center">
+          <button class="form-button">Sign Up</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

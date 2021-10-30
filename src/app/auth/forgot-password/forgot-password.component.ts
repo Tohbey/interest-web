@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/UserService/user.service';
 
@@ -35,7 +36,7 @@ export class ForgotPasswordComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder,
     private authservice: AuthService,
     private userService: UserService,
-    private router: Router) { }
+    private router: Router, private toastr:ToastrService) { }
 
   ngOnInit(): void {
     this.forgotPasswordForm();
@@ -104,11 +105,12 @@ export class ForgotPasswordComponent implements OnInit {
     }
     this.authservice.resetPassword(passwordObject).subscribe((data) => {
       console.log(data)
+      this.toastr.success(data.msg, "Interest App");
+      this.router.navigate(['/login'])
     }, error => {
       console.log(error)
     })
 
-    this.router.navigate(['/login'])
   }
 
   onOtpChange(otp: string) {

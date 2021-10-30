@@ -14,6 +14,7 @@ export class UserService {
 
   userUrl = APIS.userURL
   generalURL = APIS.generalURL
+  interestURL = APIS.interestURL;
   constructor(private _http: HttpClient) {}
 
   httpOptions = {
@@ -45,6 +46,13 @@ export class UserService {
 
   getCountryCode():Observable<any>{
     return this._http.get<any>(this.generalURL +"countries").pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  getInterest():Observable<any>{
+    return this._http.get<any>(this.interestURL +"me").pipe(
       retry(1),
       catchError(this.handleError)
     )

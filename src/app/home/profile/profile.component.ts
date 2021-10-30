@@ -14,11 +14,18 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit(): void {
     this.getUser()
+    this.getInterest()
   }
 
   getUser(){
     this.userService.getCurrentUser().subscribe((data) => {
       this.user = data.data
+    })
+  }
+
+  getInterest(){
+    this.userService.getInterest().subscribe((data) => {
+      console.log("interest", data.data)
     })
   }
 }

@@ -23,7 +23,7 @@ export class SignupComponent implements OnInit {
 
   ngOnInit(): void {
     this.signForm();
-    this.getCOuntryCode()
+    this.getCountryCode()
   }
 
   signForm(){
@@ -41,7 +41,7 @@ export class SignupComponent implements OnInit {
     return this.sign.controls;
   }
 
-  getCOuntryCode(){
+  getCountryCode(){
     this.userService.getCountryCode().subscribe((resp) => {
       this.countryCode = resp.data
     })

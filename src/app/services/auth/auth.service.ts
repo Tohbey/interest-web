@@ -63,22 +63,31 @@ export class AuthService {
     )
   }
 
+  recover(phoneNumber:string): Observable<any>{
+    return this._http.post<any>(this.authURL+ "recover", JSON.stringify(phoneNumber), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
+  resetPassword(passwordReset: any):Observable<any>{
+    return this._http.post<any>(this.authURL + "reset", JSON.stringify(passwordReset), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
   isUserLoggedIn(){
     let user = this.tokenVlaue;
     if(user == null) return false
     return true
   }
 
-  handleError(error: { error: { message: any; }; msg: string; status: any; }){
+  handleError(error: any){
+    console.log({error})
     let errorMessage="";
-    if(error.error instanceof ErrorEvent){
-      //Get client-side error
-      errorMessage = error.msg;
-    }else{
-      //get serve-side error
-      errorMessage = `Error Code: ${error.status}\n Message:${error.error.message}`;
-      }
-    console.log(errorMessage);
+    errorMessage = error.error.msg
     return throwError(errorMessage);
   };
 }

@@ -42,7 +42,7 @@
               name="countryCode"
               class="form__input form-select-sm"
               required
-              [ngClass]="{ 'is-invalid': submitSignUp && f.email.errors }"
+              [ngClass]="{ 'is-invalid': submitSignUp && f.countryCode.errors }"
             >
               <option value="" disabled selected>CoC</option>
               <option *ngFor="let k of countryCode" [ngValue]="k.dial_code">

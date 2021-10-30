@@ -6,26 +6,38 @@
       <form class="form" autocomplete="off" [formGroup]="login">
         <div class="form__group">
           <input
-            class="form__input"
+            class="form__input form-control"
             placeholder="Email or Phone Number"
             id="email"
             name="emailPhoneNumber"
             formControlName="emailPhoneNumber"
             required
+            [ngClass]="{ 'is-invalid': submitLogin && f.emailPhoneNumber.errors }"
           />
           <label class="form__label">Email or Phone Number</label>
+          <div *ngIf="submitLogin && f.emailPhoneNumber.errors" class="invalid-feedback">
+            <div style="margin-top: -21px" *ngIf="f.emailPhoneNumber.errors?.required">
+              email or phone number is required
+            </div>
+          </div>
         </div>
         <div class="form__group">
           <input
-            class="form__input"
+            class="form__input form-control"
             placeholder="Password"
             id="password"
             name="password"
             formControlName="password"
             required
             type="password"
+            [ngClass]="{ 'is-invalid': submitLogin && f.password.errors }"
           />
           <label class="form__label">password</label>
+          <div *ngIf="submitLogin && f.password.errors" class="invalid-feedback">
+            <div style="margin-top: -21px" *ngIf="f.password.errors?.required">
+              email or phone number is required
+            </div>
+          </div>
         </div>
         <a routerLink="/forgot-password" class="login-body">Forgot password?</a>
         <div style="display: flex; justify-content: center;">

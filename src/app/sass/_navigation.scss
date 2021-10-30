@@ -8,6 +8,10 @@
   display: flex;
   align-items: center;
 
+  @media only screen and (max-width: $tablet){
+
+  }
+
   &--holder{
     padding: 1rem;
     width: 90%;
@@ -25,6 +29,8 @@
   @media only screen and (max-width: $tablet){
     width: 100%;
   }
+
+
   &-list{
     display: flex;
     list-style: none;

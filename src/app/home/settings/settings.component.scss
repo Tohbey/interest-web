@@ -22,6 +22,9 @@
   justify-content: space-between;
   align-items: center;
 
+  @media only screen and (max-width: $mobile-large){
+    width: 100%;
+  }
   @include text(0, left, 17rem);
 
   @include button(#F05537, $white-color, #d1410c);

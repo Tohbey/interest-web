@@ -18,7 +18,7 @@ export class SignupComponent implements OnInit {
   countryCode: any[] = [];
   constructor(
     private _formBuilder: FormBuilder,
-    private _route:Router,
+    private _route: Router,
     private userService: UserService) { }
 
   ngOnInit(): void {
@@ -26,7 +26,7 @@ export class SignupComponent implements OnInit {
     this.getCountryCode()
   }
 
-  signForm(){
+  signForm() {
     this.sign = this._formBuilder.group({
       email: ['', Validators.required],
       password: ['', Validators.required],
@@ -37,33 +37,35 @@ export class SignupComponent implements OnInit {
     });
   }
 
-  get f(){
+  get f() {
     return this.sign.controls;
   }
 
-  getCountryCode(){
+  getCountryCode() {
     this.userService.getCountryCode().subscribe((resp) => {
       this.countryCode = resp.data
     })
   }
 
-  signUp(){
-    this.submitSignUp  = true;
-    if(this.sign.invalid){
+  signUp() {
+    this.submitSignUp = true;
+    if (this.sign.invalid) {
       return;
     }
     console.log(this.sign.value)
     this.user = this.sign.value
-    if(this.user.phoneNumber.charAt(0) == "0"){
+    if (this.user.phoneNumber.charAt(0) == "0") {
       this.user.phoneNumber = this.user.countryCode + this.user.phoneNumber.slice(1)
-    }else{
+    } else if (this.user.phoneNumber.charAt(0) == "+") {
+      return;
+    }else {
       this.user.phoneNumber = this.user.countryCode + this.user.phoneNumber
     }
-    console.log("User Details",this.user);
+    console.log("User Details", this.user);
     this.userService.createUser(this.user).subscribe((data) => {
       console.log(data)
       this._route.navigate(['./verification', this.user?.phoneNumber])
-    },error => {
+    }, error => {
       this.isError = true
       this.errorStatment = error
       console.log("error", this.errorStatment);

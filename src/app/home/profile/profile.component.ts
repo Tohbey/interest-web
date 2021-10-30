@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Interest } from 'src/app/model/interest';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/UserService/user.service';
 
@@ -10,6 +11,7 @@ import { UserService } from 'src/app/services/UserService/user.service';
 export class ProfileComponent implements OnInit {
 
   user!:User
+  interest!: Interest
   constructor(private userService: UserService) { }
 
   ngOnInit(): void {
@@ -26,6 +28,7 @@ export class ProfileComponent implements OnInit {
   getInterest(){
     this.userService.getInterest().subscribe((data) => {
       console.log("interest", data.data)
+      this.interest = data.data
     })
   }
 }

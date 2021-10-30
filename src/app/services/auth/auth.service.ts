@@ -56,15 +56,15 @@ export class AuthService {
   }
 
   changePassword(passwordObject: any):Observable<any>{
-    return this._http.patch<any>(this.authURL+"resendOtp",JSON.stringify(passwordObject), this.httpOptions)
+    return this._http.patch<any>(this.authURL+"change-password",JSON.stringify(passwordObject), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }
 
-  recover(phoneNumber:string): Observable<any>{
-    return this._http.post<any>(this.authURL+ "recover", JSON.stringify(phoneNumber), this.httpOptions)
+  recover(phoneNumber:any): Observable<any>{
+    return this._http.post<any>(this.authURL+ "recover", phoneNumber)
     .pipe(
       retry(1),
       catchError(this.handleError)

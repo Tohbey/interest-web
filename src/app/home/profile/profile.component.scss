@@ -29,11 +29,12 @@
   &-profile {
     height: 14rem;
     width: 100%;
-    border: 1px solid navy;
     padding: 10px 27rem;
     display: flex;
     justify-content: center;
     flex-direction: column;
+    background-color: $white-color;
+    box-shadow: 3px 3px 5px 1px rgba(170,166,166,0.5);
 
     @media only screen and (max-width: $tablet){
       height: 16rem;
@@ -58,7 +59,7 @@
     &-container{
       display: flex;
       flex-direction: row;
-      width: 30rem;
+      width: 52rem;
       justify-content: space-between;
       @media only screen and (max-width: $tablet){
         flex-direction: column;

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/UserService/user.service';
 
@@ -18,11 +19,13 @@ export class SettingsComponent implements OnInit {
   isPassword: boolean = false
   isEmail: boolean = false;
   isUsername: boolean = false;
+  responseMessage!: string;
   constructor(
     private _formBuilder: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private userService: UserService) { }
+    private userService: UserService,
+    private toastr: ToastrService) { }
 
   ngOnInit(): void {
     this.usernameForm();
@@ -61,6 +64,8 @@ export class SettingsComponent implements OnInit {
     console.log(this.password.value);
     this.authService.changePassword(this.password.value).subscribe((data) => {
       console.log(data);
+      this.responseMessage = data.msg
+      this.toastr.success(this.responseMessage, 'Interes App')
       this.router.navigate(['/login'])
     },error => {
       console.log(error)
@@ -79,6 +84,8 @@ export class SettingsComponent implements OnInit {
     console.log(this.changeEmail.value)
     this.userService.updateUser(this.changeEmail.value).subscribe((data) => {
       console.log(data)
+      this.responseMessage = data.msg
+      this.toastr.success(this.responseMessage, 'Interes App')
     },error => {
       console.log(error)
     })
@@ -96,6 +103,8 @@ export class SettingsComponent implements OnInit {
     console.log(this.changeUsername.value)
     this.userService.updateUser(this.changeUsername.value).subscribe((data) => {
       console.log(data)
+      this.responseMessage = data.msg
+      this.toastr.success(this.responseMessage, 'Interes App')
     },error => {
       console.log(error)
     })

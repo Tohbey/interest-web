@@ -63,15 +63,20 @@ export class ForgotPasswordComponent implements OnInit {
     if(this.forgotPassword.invalid){
       return;
     }
-    console.log(this.forgotPassword.value);
     this.coc = this.forgotPassword.get("countryCode")?.value
     this.phoneNumber = this.forgotPassword.get("phoneNumber")?.value;
     if(this.phoneNumber.charAt(0) == "0"){
       this.phoneNumber = this.coc + this.phoneNumber.slice(1)
+    } else if (this.phoneNumber.charAt(0) == "+") {
+      return;
     }else{
       this.phoneNumber = this.coc + this.phoneNumber
     }
-    this.authservice.recover(this.phoneNumber).subscribe((data) => {
+    let phoneObject = {
+      phoneNumber: this.phoneNumber
+    }
+    console.log(phoneObject)
+    this.authservice.recover(phoneObject).subscribe((data) => {
       console.log(data)
     }, error => {
       console.log(error)

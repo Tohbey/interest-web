@@ -1,14 +1,14 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { AuthModule } from './auth/auth.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpIntercepterService } from './services/http-intercepter.service';
-
+import { ToastrModule } from 'ngx-toastr';
 @NgModule({
   declarations: [
     AppComponent
@@ -20,7 +20,9 @@ import { HttpIntercepterService } from './services/http-intercepter.service';
     FormsModule,
     NgOtpInputModule,
     AuthModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     {

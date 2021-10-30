@@ -10,7 +10,6 @@ import { VerificationComponent } from './verification/verification.component';
 import { NgOtpInputModule } from 'ng-otp-input';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
-
 @NgModule({
   declarations: [
     LoginComponent,

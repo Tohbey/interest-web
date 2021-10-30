@@ -9,6 +9,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { HomeComponent } from './home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ToastrModule } from 'ngx-toastr';
 
 
 @NgModule({
@@ -24,7 +25,12 @@ import { NavbarComponent } from './navbar/navbar.component';
     CommonModule,
     HomeRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    ToastrModule.forRoot({
+      timeOut:2000,
+      progressBar: true,
+      progressAnimation: 'increasing'
+    }),
   ],
   exports:[
     ProfileComponent,

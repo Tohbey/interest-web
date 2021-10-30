@@ -85,4 +85,10 @@ body {
   overflow: hidden;
   grid-template-rows: [nav-start] 6rem [nav-end];
   grid-template-columns: repeat(12, minmax(min-content,14rem));
+
+  @media only screen and (max-width: $tablet){
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
 }

@@ -98,6 +98,7 @@ export class ForgotPasswordComponent implements OnInit {
       return
     }
     let passwordObject = {
+      phoneNumber: this.phoneNumber,
       token: this.otp,
       password : this.password.get('password')?.value
     }
